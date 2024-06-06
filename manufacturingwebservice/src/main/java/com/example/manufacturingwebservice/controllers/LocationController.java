@@ -5,12 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.manufacturingwebservice.dto.LocationDTO;
 import com.example.manufacturingwebservice.entities.Location;
@@ -23,19 +18,25 @@ public class LocationController {
     private LocationService locationService;
 
     @GetMapping("")
-    public List<LocationDTO> getLocationss() {
+    public List<LocationDTO> getLocations() {
         return locationService.getAll();
     }
 
     @GetMapping("/{locationID}")
-    public ResponseEntity<Location> getProductById(@PathVariable short locationID) {
+    public ResponseEntity<Location> getLocationById(@PathVariable short locationID) {
         Optional<Location> location = locationService.getLocationById(locationID);
         return location.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("")
-    public ResponseEntity<LocationDTO> createProduct(@RequestBody LocationDTO locationDTO) {
+    public ResponseEntity<LocationDTO> createLocation(@RequestBody LocationDTO locationDTO) {
         LocationDTO createdLocation = locationService.create(locationDTO);
         return ResponseEntity.ok(createdLocation);
+    }
+
+    @PutMapping("/{locationID}")
+    public ResponseEntity<LocationDTO> updateLocation(@PathVariable short locationID, @RequestBody LocationDTO locationDTO) {
+        Optional<LocationDTO> updatedLocation = locationService.update(locationID, locationDTO);
+        return updatedLocation.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

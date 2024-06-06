@@ -3,6 +3,7 @@ package com.example.manufacturingwebservice.services;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,16 +32,17 @@ public class LocationService {
     }
 
     public LocationDTO create(LocationDTO locationDTO) {
-        try {
-            Location location = modelMapper.map(locationDTO, Location.class);
-            Location savedLocation = locationRepository.save(location);
-            return convertToDto(savedLocation);
-            
-        } catch (Exception e) {
-            System.out.println("Objeto Nulo");
-            System.out.println(e.getMessage());
-        }
-        return null;
+        Location location = modelMapper.map(locationDTO, Location.class);
+        Location savedLocation = locationRepository.save(location);
+        return convertToDto(savedLocation);
+    }
+
+    public Optional<LocationDTO> update(short locationID, LocationDTO locationDTO) {
+        return locationRepository.findById(locationID).map(existingLocation -> {
+            modelMapper.map(locationDTO, existingLocation);
+            Location updatedLocation = locationRepository.save(existingLocation);
+            return convertToDto(updatedLocation);
+        });
     }
 
     private LocationDTO convertToDto(Location location) {

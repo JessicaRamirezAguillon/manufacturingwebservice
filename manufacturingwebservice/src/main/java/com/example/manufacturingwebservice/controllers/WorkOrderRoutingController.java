@@ -57,23 +57,7 @@ public class WorkOrderRoutingController {
             @PathVariable Integer productID,
             @PathVariable Short operationSequence,
             @RequestBody WorkOrderRoutingDTO workOrderDTO) {
-        Optional<WorkOrderRouting> optionalWorkOrder = workOrderService.getWorkOrderRoutingById(workOrderID, productID, operationSequence);
-        if (optionalWorkOrder.isPresent()) {
-            WorkOrderRouting workOrder = optionalWorkOrder.get();
-            workOrder.setLocationID(workOrderDTO.getLocationID());
-            workOrder.setScheduledStartDate(workOrderDTO.getScheduledStartDate());
-            workOrder.setScheduledEndDate(workOrderDTO.getScheduledEndDate());
-            workOrder.setActualStartDate(workOrderDTO.getActualStartDate());
-            workOrder.setActualEndDate(workOrderDTO.getActualEndDate());
-            workOrder.setActualResourceHrs(workOrderDTO.getActualResourceHrs());
-            workOrder.setPlannedCost(workOrderDTO.getPlannedCost());
-            workOrder.setActualCost(workOrderDTO.getActualCost());
-            workOrder.setModifiedDate(workOrderDTO.getModifiedDate());
-            
-            WorkOrderRoutingDTO updatedWorkOrderRouting = workOrderService.create(workOrderDTO);
-            return ResponseEntity.ok(updatedWorkOrderRouting);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        Optional<WorkOrderRoutingDTO> updatedWorkOrderRouting = workOrderService.update(workOrderID, productID, operationSequence, workOrderDTO);
+        return updatedWorkOrderRouting.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

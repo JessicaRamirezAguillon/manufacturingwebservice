@@ -19,7 +19,7 @@ public class WorkOrder {
     @Column(name = "OrderQty", nullable = false)
     private Integer orderQty;
 
-    @Column(name = "StockedQty", nullable = false)
+    @Column(name = "StockedQty", nullable = false, insertable = false, updatable = false)
     private Integer stockedQty;
 
     @Column(name = "ScrappedQty", nullable = false)

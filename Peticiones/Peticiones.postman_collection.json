@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "03f7ff6a-369d-4d3d-9e13-fe15ca6214c0",
+		"name": "ManufacturingWebService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24966493"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TransactionHistories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/transactionhistories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactionhistories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "WorkOrders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/workorders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workorders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "WorkOrderRoutes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/workorderroutes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workorderroutes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "Products",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": 1,\r\n    \"name\": \"Non Adjustable Race\",\r\n    \"productNumber\": \"AR-5381\",\r\n    \"makeFlag\": false,\r\n    \"finishedGoodsFlag\": false,\r\n    \"color\": null,\r\n    \"safetyStockLevel\": 1000,\r\n    \"reorderPoint\": 750,\r\n    \"standardCost\": 0.0000,\r\n    \"listPrice\": 0.0000,\r\n    \"size\": null,\r\n    \"sizeUnitMeasureCode\": null,\r\n    \"weightUnitMeasureCode\": null,\r\n    \"weight\": null,\r\n    \"daysToManufacture\": 0,\r\n    \"productLine\": null,\r\n    \"clazz\": null,\r\n    \"style\": null,\r\n    \"productSubcategoryId\": null,\r\n    \"productModelId\": null,\r\n    \"sellStartDate\": \"2008-04-30T00:00:00\",\r\n    \"sellEndDate\": null,\r\n    \"discontinuedDate\": null,\r\n    \"rowguid\": \"694215b7-08f7-4c0d-acb1-d734ba44c0c8\",\r\n    \"modifiedDate\": \"2014-02-08T10:01:36.827\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Locations",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"locationID\": 1,\r\n    \"name\": \"Location Modified\",\r\n    \"costRate\": 0.0000,\r\n    \"availability\": 0.00,\r\n    \"modifiedDate\": \"2008-04-30T00:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/locations/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"locations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TransactionHistories",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"transactionID\": 100000,\r\n        \"productID\": 784,\r\n        \"referenceOrderID\": 41590,\r\n        \"referenceOrderLineID\": 0,\r\n        \"transactionDate\": \"2013-07-31T00:00:00\",\r\n        \"transactionType\": \"W\",\r\n        \"quantity\": 10,\r\n        \"actualCost\": 0.0000,\r\n        \"modifiedDate\": \"2013-07-31T00:00:00\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/transactionhistories/100000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactionhistories",
+								"100000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "WorkOrders",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"workOrderID\": 1,\r\n        \"productID\": 722,\r\n        \"orderQty\": 8,\r\n        \"stockedQty\": 8,\r\n        \"scrappedQty\": 0,\r\n        \"startDate\": \"2011-06-03T00:00:00\",\r\n        \"endDate\": \"2012-06-13T00:00:00\",\r\n        \"dueDate\": \"2012-06-14T00:00:00\",\r\n        \"scrapReasonID\": null,\r\n        \"modifiedDate\": \"2011-06-13T00:00:00\",\r\n        \"workOrderRoutings\": null\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/workorders/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workorders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "WorkOrderRoutes",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"workOrderID\": 13,\r\n        \"productID\": 747,\r\n        \"operationSequence\": 1,\r\n        \"locationID\": 10,\r\n        \"scheduledStartDate\": \"2011-06-03T00:00:00\",\r\n        \"scheduledEndDate\": \"2011-06-14T00:00:00\",\r\n        \"actualStartDate\": \"2011-06-03T00:00:00\",\r\n        \"actualEndDate\": \"2011-06-19T00:00:00\",\r\n        \"actualResourceHrs\": 40.1000,\r\n        \"plannedCost\": 92.2500,\r\n        \"actualCost\": 92.2500,\r\n        \"modifiedDate\": \"2011-06-19T00:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/workorderroutes/13/747/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workorderroutes",
+								"13",
+								"747",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

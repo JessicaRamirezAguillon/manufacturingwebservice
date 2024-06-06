@@ -45,6 +45,15 @@ public class WorkOrderRoutingService {
         return null;
     }
 
+    public Optional<WorkOrderRoutingDTO> update(Integer workOrderID, Integer productID, Short operationSequence, WorkOrderRoutingDTO workOrderDTO) {
+        WorkOrderRoutingId id = new WorkOrderRoutingId(workOrderID, productID, operationSequence);
+        return workOrderRoutingRepository.findById(id).map(existingWorkOrder -> {
+            modelMapper.map(workOrderDTO, existingWorkOrder);
+            WorkOrderRouting updatedWorkOrderRouting = workOrderRoutingRepository.save(existingWorkOrder);
+            return convertToDto(updatedWorkOrderRouting);
+        });
+    }
+
     public void delete(Integer workOrderID, Integer productID, Short operationSequence) {
         WorkOrderRoutingId id = new WorkOrderRoutingId(workOrderID, productID, operationSequence);
         workOrderRoutingRepository.deleteById(id);

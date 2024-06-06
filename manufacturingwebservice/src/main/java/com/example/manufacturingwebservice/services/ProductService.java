@@ -31,7 +31,6 @@ public class ProductService {
     }
 
     public ProductDTO create(ProductDTO productDTO) {
-        
         try {
             Product product = modelMapper.map(productDTO, Product.class);
             Product savedProduct = productRepository.save(product);
@@ -41,6 +40,14 @@ public class ProductService {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public Optional<ProductDTO> update(int productId, ProductDTO productDTO) {
+        return productRepository.findByProductId(productId).map(existingProduct -> {
+            modelMapper.map(productDTO, existingProduct);
+            Product updatedProduct = productRepository.save(existingProduct);
+            return convertToDto(updatedProduct);
+        });
     }
 
     public void delete(int productId) {

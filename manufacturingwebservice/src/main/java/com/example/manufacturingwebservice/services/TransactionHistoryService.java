@@ -43,14 +43,7 @@ public class TransactionHistoryService {
         Optional<TransactionHistory> optionalTransactionHistory = transactionHistoryRepository.findById(transactionID);
         if (optionalTransactionHistory.isPresent()) {
             TransactionHistory transactionHistory = optionalTransactionHistory.get();
-            transactionHistory.setProductID(transactionHistoryDTO.getProductID());
-            transactionHistory.setReferenceOrderID(transactionHistoryDTO.getReferenceOrderID());
-            transactionHistory.setReferenceOrderLineID(transactionHistoryDTO.getReferenceOrderLineID());
-            transactionHistory.setTransactionDate(transactionHistoryDTO.getTransactionDate());
-            transactionHistory.setTransactionType(transactionHistoryDTO.getTransactionType());
-            transactionHistory.setQuantity(transactionHistoryDTO.getQuantity());
-            transactionHistory.setActualCost(transactionHistoryDTO.getActualCost());
-            transactionHistory.setModifiedDate(transactionHistoryDTO.getModifiedDate());
+            modelMapper.map(transactionHistoryDTO, transactionHistory);
             TransactionHistory updatedTransactionHistory = transactionHistoryRepository.save(transactionHistory);
             return convertToDto(updatedTransactionHistory);
         } else {

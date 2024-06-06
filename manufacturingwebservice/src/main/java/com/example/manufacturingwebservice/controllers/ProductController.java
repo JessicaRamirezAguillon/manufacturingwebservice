@@ -1,14 +1,15 @@
 package com.example.manufacturingwebservice.controllers;
 
-import com.example.manufacturingwebservice.dto.ProductDTO;
-import com.example.manufacturingwebservice.entities.Product;
-import com.example.manufacturingwebservice.services.ProductService;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import com.example.manufacturingwebservice.dto.ProductDTO;
+import com.example.manufacturingwebservice.entities.Product;
+import com.example.manufacturingwebservice.services.ProductService;
 
 @RestController
 @RequestMapping(path = "/products")
@@ -37,5 +38,11 @@ public class ProductController {
     public ResponseEntity<Void> deleteProduct(@PathVariable int productId) {
         productService.delete(productId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{productId}")
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable int productId, @RequestBody ProductDTO productDTO) {
+        Optional<ProductDTO> updatedProduct = productService.update(productId, productDTO);
+        return updatedProduct.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

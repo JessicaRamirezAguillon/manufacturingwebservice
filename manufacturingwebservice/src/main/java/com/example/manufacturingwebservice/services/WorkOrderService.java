@@ -32,15 +32,25 @@ public class WorkOrderService {
     }
 
     public WorkOrderDTO create(WorkOrderDTO workOrderDTO) {
-        try {
-            WorkOrder workOrder = modelMapper.map(workOrderDTO, WorkOrder.class);
-            WorkOrder savedWorkOrder = workOrderRepository.save(workOrder);
-            return convertToDto(savedWorkOrder);
-        } catch (Exception e) {
-            System.out.println("Objeto Nulo");
-            System.out.println(e.getMessage());
-        }
-        return null;
+        WorkOrder workOrder = modelMapper.map(workOrderDTO, WorkOrder.class);
+        WorkOrder savedWorkOrder = workOrderRepository.save(workOrder);
+        return convertToDto(savedWorkOrder);
+    }
+
+    public Optional<WorkOrderDTO> update(int workOrderID, WorkOrderDTO workOrderDTO) {
+        return workOrderRepository.findById(workOrderID).map(existingWorkOrder -> {
+            existingWorkOrder.setProductID(workOrderDTO.getProductID());
+            existingWorkOrder.setOrderQty(workOrderDTO.getOrderQty());
+            // existingWorkOrder.setStockedQty(workOrderDTO.getStockedQty()); // Exclude this line
+            existingWorkOrder.setScrappedQty(workOrderDTO.getScrappedQty());
+            existingWorkOrder.setStartDate(workOrderDTO.getStartDate());
+            existingWorkOrder.setEndDate(workOrderDTO.getEndDate());
+            existingWorkOrder.setDueDate(workOrderDTO.getDueDate());
+            existingWorkOrder.setScrapReasonID(workOrderDTO.getScrapReasonID());
+            existingWorkOrder.setModifiedDate(workOrderDTO.getModifiedDate());
+            WorkOrder updatedWorkOrder = workOrderRepository.save(existingWorkOrder);
+            return convertToDto(updatedWorkOrder);
+        });
     }
 
     public void delete(int workOrderID) {
